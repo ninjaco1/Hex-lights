@@ -2,8 +2,17 @@
 
 Theme::Theme(){
     hue = 0;
+    current_theme = 0;
+    num_themes = 10; // the number of themes there are
+
+
     FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds,NUM_LEDS);
     FastLED.setBrightness(50);
+}
+
+void Theme::changeTheme(){
+    current_theme++;
+    current_theme %= num_themes;
 }
 
 // **************************************

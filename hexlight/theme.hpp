@@ -7,9 +7,14 @@ class Theme{
     private:
     //    uint16_t NUM_LEDS; 
        CRGB leds[NUM_LEDS];
+       uint8_t current_theme;
+       uint8_t num_themes;
        uint8_t hue;
     public:
         Theme();
+        // change themes
+        void changeTheme();
+
         // functions that have themes
         void rgbCheck(); // cycles through solid rbg
         void gradientMagentaToYellow();
