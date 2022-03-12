@@ -135,3 +135,13 @@ void Theme::coldBluePattern(){
     return;
 
 }
+
+void Theme::showRandomPurpleBlue(){
+    uint8_t paletteIndex = 0;
+    for (int i = 0; i < NUM_LEDS; i++){
+        led[i] = ColorFromPalette(purpleGreentoLightBlue, random8());
+    }
+
+    fill_palette(leds, NUM_LEDS, paletteIndex, 255 / NUM_LEDS, purpleGreentoLightBlue, 255, LINEARBLEND);
+    FastLED.show();
+}

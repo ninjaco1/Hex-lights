@@ -24,6 +24,13 @@ class Theme{
        uint8_t current_theme;
        uint8_t num_themes;
        uint8_t hue;
+       CRGBPalette16 purpleGreentoLightBlue = purplegreenlightblue;
+
+
+
+
+
+
     public:
         Theme();
         // change themes
@@ -40,6 +47,9 @@ class Theme{
         void changeOnlyHue();
         void travelingRainbow();
         void coldBluePattern();
+
+        // color palettes
+        void showRandomPurpleBlue(); // assign a different color to each hex
 
 
 };
