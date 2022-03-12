@@ -1,6 +1,7 @@
 #include "theme.hpp"
 
 Theme::Theme(){
+    hue = 0;
     FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds,NUM_LEDS);
     FastLED.setBrightness(50);
 }
@@ -53,4 +54,75 @@ void Theme::gradientRedYellowGreenBlue(){
     delay(500);
  
     return;
+}
+
+
+//*********************************
+//          showRainbow
+// show rainbow down the line
+// ********************************
+void Theme::showRainbow(){
+    fill_rainbow(leds, NUM_LEDS, 0, 255 / NUM_LEDS);
+    FastLED.show();
+    return;
+}
+
+//*************************************
+//          setOneColor();
+// **************************************
+void Theme::setOneColor(){
+    for (int i = 0; i < NUM_LEDS; i++)
+        leds[i] = CRGB(120,255,15);
+    FastLED.show();
+    return;
+}
+
+//*****************************************
+//       changing the hue only
+//*****************************************
+void Theme::changeOnlyHue(){
+    for (int i = 0; i < NUM_LEDS; i++){
+        leds[i] = CHSV(hue, 255,255);
+    }
+
+    EVERY_N_MILLISECONDS(15){
+        hue++;
+    }
+    FastLED.show();
+
+    return;
+}
+
+// a rainbow traveling down the strip
+void Theme::travelingRainbow(){
+
+    for (int i = 0; i < NUM_LEDS; i++){
+        leds[i] = CHSV(hue + (i+10), 255, 255);
+    }
+
+    EVERY_N_MILLISECONDS(15){
+        hue++;
+    }
+
+    FastLED.show();
+
+    return;
+}
+
+// cold blue pattern
+void Theme::coldBluePattern(){
+    // create a new pixel for led[0]
+    EVERY_N_MILLISECONDS(50){
+        leds[0] = CHSV(160, random8(), random8(100,255));
+        
+        // copy each pixel to the next one, starting at the far end 
+        // thereby 'moving' the pattern along the strip
+        for (int i = NUM_LEDS -1; i > 0; i--){
+            leds[i] = leds[i-1];
+        }
+
+        FastLED.show();
+    }
+    return;
+
 }

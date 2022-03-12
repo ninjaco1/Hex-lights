@@ -5,7 +5,7 @@
 // change this value later
 // #define LED_PIN 2
 
-
+Theme theme; // create object themes
 
 
 void setup(){
