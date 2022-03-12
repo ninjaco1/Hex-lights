@@ -4,7 +4,7 @@
 
 ## Images
 <img src="./imgs/outsideHex.jpg" alt="outside Hex" width="200"/>
-<img src="./imgs/insideHex.jpg" alt="outside Hex" width="200"/>
+<img src="./imgs/InsideHex.jpg" alt="outside Hex" width="200"/>
 
 
 ## References
