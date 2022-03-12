@@ -2,6 +2,9 @@
 
 ## Design
 
+## Images
+![Outside Hex](./imgs/outsideHex.jpg)
+![Inside Hex](./imgs/insideHex.jpg)
 
 
 ## References
