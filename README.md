@@ -3,8 +3,8 @@
 ## Design
 
 ## Images
-![Outside Hex](./imgs/outsideHex.jpg)
-![Inside Hex](./imgs/insideHex.jpg)
+<img src="./imgs/outsideHex.jpg" alt="outside Hex" width="200"/>
+<img src="./imgs/insideHex.jpg" alt="outside Hex" width="200"/>
 
 
 ## References
