@@ -164,10 +164,12 @@ void Theme::gradientFading(){
     FastLED.show();
 }
 
+
+// random index will fade into different colors within the gradient
 void Theme::travelingGradient1(){
     // color each pixel from the palette using the undex from colorIndex[]
     for (int i = 0; i < NUM_LEDS; i++){
-        leds[i] = ColorFromPalette(greenblue, colorIndex[i]);
+        leds[i] = ColorFromPalette(spellbound, colorIndex[i]);
 
     }
 
@@ -176,5 +178,49 @@ void Theme::travelingGradient1(){
             colorIndex[i]++;
         }
     }
+    FastLED.show();
+}
+
+//
+void Theme::fadeGradientTogether(){
+    CRGBPalette16 currentPalette(GMT_sealand_gp);
+    CRGBPalette16 targetPalette(bhw2_grrrrr_gp);
+
+    for (int i = 0; i < NUM_LEDS; i++){
+        leds[i] = ColorFromPalette(currentPalette, colorIndex[i]);
+    }
+    
+    // the amount of steps it takes for the palette takes to blend into the next one
+    nblendPaletteTowardPalette(currentPalette, targetPalette, 10);
+
+    switch(whichPalette){
+        case 0:
+            targetPalette = bhw2_grrrrr_gp;
+            break;
+        case 1:
+            targetPalette = purplegreenlightblue;
+            break;
+
+       case 2:
+            targetPalette = spellbound_gbhw2_grrrrr_gp;
+            break;
+    }
+
+    EVERY_N_SECONDS(5){
+        whichPalette++;
+
+        if (whichPalette > 2) 
+            whichPalette = 0;
+
+    }
+
+    EVERY_N_MILLISECONDS(5){
+        for (int i = 0; i < NUM_LEDS; i++){
+            colorIndex[i]++;
+        }
+    }
+
+    FastLED.show();
+
 
 }
