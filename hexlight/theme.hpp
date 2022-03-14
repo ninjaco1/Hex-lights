@@ -96,6 +96,7 @@ DEFINE_GRADIENT_PALETTE( bhw2_grrrrr_gp ) {
 class Theme{
     private:
        CRGB leds[NUM_LEDS];
+       uint8_t colorIndex[NUM_LEDS];
        uint8_t current_theme;
        uint8_t num_themes;
        uint8_t hue;
@@ -124,5 +125,5 @@ class Theme{
         // color palettes
         void showRandomPurpleBlue(); // assign a different color to each hex
         void gradientFading(); // all LEDs fading
-
+        void travelingGradient1();
 };

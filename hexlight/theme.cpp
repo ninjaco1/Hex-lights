@@ -8,6 +8,12 @@ Theme::Theme(){
 
     FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds,NUM_LEDS);
     FastLED.setBrightness(50);
+
+    for (int i = 0; i < NUM_LEDS; i++){
+        colorIndex[i] = random8();
+    }
+
+
 }
 
 void Theme::changeTheme(){
@@ -156,4 +162,19 @@ void Theme::gradientFading(){
 
     // Fade all LEDs down by 1 in brightness each time this is called
     FastLED.show();
+}
+
+void Theme::travelingGradient1(){
+    // color each pixel from the palette using the undex from colorIndex[]
+    for (int i = 0; i < NUM_LEDS; i++){
+        leds[i] = ColorFromPalette(greenblue, colorIndex[i]);
+
+    }
+
+    EVERY_N_MILLISECONDS(5){
+        for (int i = 0; i < NUM_LEDS; i++){
+            colorIndex[i]++;
+        }
+    }
+
 }
