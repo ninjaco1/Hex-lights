@@ -145,3 +145,15 @@ void Theme::showRandomPurpleBlue(){
     fill_palette(leds, NUM_LEDS, paletteIndex, 255 / NUM_LEDS, purpleGreentoLightBlue, 255, LINEARBLEND);
     FastLED.show();
 }
+
+// the leds fading slowly 
+void Theme::gradientFading(){
+
+    EVERY_N_MILLISECONDS(50){
+        // switch on an LED at random, choosing a random color from the palette
+        leds[random8(0, NUM_LEDS - 1)] = ColorFromPalette(purpleGreentoLightBlue, random8(), 255, LINEARBLEND);
+    }
+
+    // Fade all LEDs down by 1 in brightness each time this is called
+    FastLED.show();
+}

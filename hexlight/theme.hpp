@@ -26,11 +26,6 @@ class Theme{
        uint8_t hue;
        CRGBPalette16 purpleGreentoLightBlue = purplegreenlightblue;
 
-
-
-
-
-
     public:
         Theme();
         // change themes
@@ -50,6 +45,6 @@ class Theme{
 
         // color palettes
         void showRandomPurpleBlue(); // assign a different color to each hex
-
+        void gradientFading(); // all LEDs fading
 
 };
