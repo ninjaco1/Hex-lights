@@ -1,12 +1,15 @@
 #include "theme.hpp"
 
+
+
 // number of leds total (14 is the number for 1 hex)
-// #define NUM_LEDS 14 
+// #define NUM_LEDS 14
 // change this value later
-// #define LED_PIN 2
+// #define LED_PIN 5 // the data pin for the led
 
+volatile unsigned long last_button_time = 0;
+volatile unsigned long currentTime;
 Theme theme; // create object themes
-
 
 // functions
 
@@ -31,14 +34,40 @@ uint8_t chk_buttons(uint8_t pin)
     return 0;
 }
 
-void setup(){
+void setup()
+{
     // pinMode for buttons
-    pinMode(4, INPUT); 
+    pinMode(2, INPUT); // button 1
+    pinMode(3, INPUT); // button
+    attachInterrupt(digitalPinToInterrupt(2), ISR1, RISING);
+    attachInterrupt(digitalPinToInterrupt(3), ISR2, RISING);
 }
 
-void loop(){
+void loop()
+{
+    theme.showTheme();
+}
 
-    if (chk_buttons(4)){
-        // check this push button
+// increase the current theme
+void ISR1()
+{
+    currentTime = millis();
+    if (currentTime - last_button_time > 100)
+    {
+        // theme.current_theme++;
+        theme.changeTheme();
+        last_button_time = millis();
     }
 }
+
+// decrease the current theme
+// void ISR2()
+// {
+//     currentTime = millis();
+//     if (currentTime - last_button_time > 100)
+//     {
+//         theme.current_theme--; 
+//         last_button_time = millis();
+//     }
+// }
+

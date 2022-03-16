@@ -16,9 +16,56 @@ Theme::Theme(){
 
 }
 
+// change the theme
 void Theme::changeTheme(){
     current_theme++;
     current_theme %= num_themes;
+}
+
+// show the theme selected
+void Theme::showTheme(){
+
+    switch(current_theme){
+        case 0:
+            rgbCheck();
+            break;
+        case 1:
+            gradientMagentaToYellow();
+            break;
+        case 2:
+            gradientRedYellowGreenBlue();
+            break;
+        case 3: 
+            showRainbow();
+            break;
+        case 4:
+            setOneColor();
+            break;
+        case 5:
+            changeOnlyHue();
+            break;
+        case 6:
+            travelingRainbow();
+            break;
+        case 7:
+            coldBluePattern();
+            break;
+        case 8:
+            showRandomPurpleBlue();
+            break;
+        case 9:
+            gradientFading();
+            break;
+        case 10:
+            travelingGradient1();
+            break;
+        case 11:
+            fadeGradientTogether();
+            break;
+
+    }
+
+
 }
 
 // **************************************

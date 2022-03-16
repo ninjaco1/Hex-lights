@@ -1,7 +1,7 @@
 #include <FastLED.h>
 
 #define NUM_LEDS 14
-#define LED_PIN 2
+#define LED_PIN 5 // the data pin for the LED strip
 
 // creating color palettes
 DEFINE_GRADIENT_PALETTE(heatmap_gp){
@@ -112,6 +112,7 @@ public:
     Theme();
     // change themes
     void changeTheme();
+    void showTheme();
 
     // functions that have themes
     void rgbCheck(); // cycles through solid rbg
