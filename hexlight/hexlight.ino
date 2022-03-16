@@ -39,8 +39,8 @@ void setup()
     // pinMode for buttons
     pinMode(2, INPUT); // button 1
     pinMode(3, INPUT); // button
-    attachInterrupt(digitalPinToInterrupt(2), ISR1, RISING);
-    attachInterrupt(digitalPinToInterrupt(3), ISR2, RISING);
+    // attachInterrupt(digitalPinToInterrupt(2), ISR1, RISING);
+    // attachInterrupt(digitalPinToInterrupt(3), ISR2, RISING);
 }
 
 void loop()
@@ -49,16 +49,16 @@ void loop()
 }
 
 // increase the current theme
-void ISR1()
-{
-    currentTime = millis();
-    if (currentTime - last_button_time > 100)
-    {
-        // theme.current_theme++;
-        theme.changeTheme();
-        last_button_time = millis();
-    }
-}
+// void ISR1()
+// {
+//     currentTime = millis();
+//     if (currentTime - last_button_time > 100)
+//     {
+//         // theme.current_theme++;
+//         theme.changeTheme();
+//         last_button_time = millis();
+//     }
+// }
 
 // decrease the current theme
 // void ISR2()

@@ -44,24 +44,24 @@ void Theme::showTheme(){
         case 5:
             changeOnlyHue();
             break;
-        case 6:
-            travelingRainbow();
-            break;
-        case 7:
-            coldBluePattern();
-            break;
-        case 8:
-            showRandomPurpleBlue();
-            break;
-        case 9:
-            gradientFading();
-            break;
-        case 10:
-            travelingGradient1();
-            break;
-        case 11:
-            fadeGradientTogether();
-            break;
+        // case 6:
+        //     travelingRainbow();
+        //     break;
+        // case 7:
+        //     coldBluePattern();
+        //     break;
+        // case 8:
+        //     showRandomPurpleBlue();
+        //     break;
+        // case 9:
+        //     gradientFading();
+        //     break;
+        // case 10:
+        //     travelingGradient1();
+        //     break;
+        // case 11:
+        //     fadeGradientTogether();
+        //     break;
 
     }
 
@@ -155,119 +155,119 @@ void Theme::changeOnlyHue(){
     return;
 }
 
-// a rainbow traveling down the strip
-void Theme::travelingRainbow(){
+// // a rainbow traveling down the strip
+// void Theme::travelingRainbow(){
 
-    for (int i = 0; i < NUM_LEDS; i++){
-        leds[i] = CHSV(hue + (i+10), 255, 255);
-    }
+//     for (int i = 0; i < NUM_LEDS; i++){
+//         leds[i] = CHSV(hue + (i+10), 255, 255);
+//     }
 
-    EVERY_N_MILLISECONDS(15){
-        hue++;
-    }
+//     EVERY_N_MILLISECONDS(15){
+//         hue++;
+//     }
 
-    FastLED.show();
+//     FastLED.show();
 
-    return;
-}
+//     return;
+// }
 
-// cold blue pattern
-void Theme::coldBluePattern(){
-    // create a new pixel for led[0]
-    EVERY_N_MILLISECONDS(50){
-        leds[0] = CHSV(160, random8(), random8(100,255));
+// // cold blue pattern
+// void Theme::coldBluePattern(){
+//     // create a new pixel for led[0]
+//     EVERY_N_MILLISECONDS(50){
+//         leds[0] = CHSV(160, random8(), random8(100,255));
         
-        // copy each pixel to the next one, starting at the far end 
-        // thereby 'moving' the pattern along the strip
-        for (int i = NUM_LEDS -1; i > 0; i--){
-            leds[i] = leds[i-1];
-        }
+//         // copy each pixel to the next one, starting at the far end 
+//         // thereby 'moving' the pattern along the strip
+//         for (int i = NUM_LEDS -1; i > 0; i--){
+//             leds[i] = leds[i-1];
+//         }
 
-        FastLED.show();
-    }
-    return;
+//         FastLED.show();
+//     }
+//     return;
 
-}
+// }
 
-void Theme::showRandomPurpleBlue(){
-    uint8_t paletteIndex = 0;
-    for (int i = 0; i < NUM_LEDS; i++){
-        led[i] = ColorFromPalette(purpleGreentoLightBlue, random8());
-    }
+// void Theme::showRandomPurpleBlue(){
+//     uint8_t paletteIndex = 0;
+//     for (int i = 0; i < NUM_LEDS; i++){
+//         leds[i] = ColorFromPalette(purpleGreentoLightBlue, random8());
+//     }
 
-    fill_palette(leds, NUM_LEDS, paletteIndex, 255 / NUM_LEDS, purpleGreentoLightBlue, 255, LINEARBLEND);
-    FastLED.show();
-}
+//     fill_palette(leds, NUM_LEDS, paletteIndex, 255 / NUM_LEDS, purpleGreentoLightBlue, 255, LINEARBLEND);
+//     FastLED.show();
+// }
 
-// the leds fading slowly 
-void Theme::gradientFading(){
+// // the leds fading slowly 
+// void Theme::gradientFading(){
 
-    EVERY_N_MILLISECONDS(50){
-        // switch on an LED at random, choosing a random color from the palette
-        leds[random8(0, NUM_LEDS - 1)] = ColorFromPalette(purpleGreentoLightBlue, random8(), 255, LINEARBLEND);
-    }
+//     EVERY_N_MILLISECONDS(50){
+//         // switch on an LED at random, choosing a random color from the palette
+//         leds[random8(0, NUM_LEDS - 1)] = ColorFromPalette(purpleGreentoLightBlue, random8(), 255, LINEARBLEND);
+//     }
 
-    // Fade all LEDs down by 1 in brightness each time this is called
-    FastLED.show();
-}
+//     // Fade all LEDs down by 1 in brightness each time this is called
+//     FastLED.show();
+// }
 
 
-// random index will fade into different colors within the gradient
-void Theme::travelingGradient1(){
-    // color each pixel from the palette using the undex from colorIndex[]
-    for (int i = 0; i < NUM_LEDS; i++){
-        leds[i] = ColorFromPalette(spellbound, colorIndex[i]);
+// // random index will fade into different colors within the gradient
+// void Theme::travelingGradient1(){
+//     // color each pixel from the palette using the undex from colorIndex[]
+//     for (int i = 0; i < NUM_LEDS; i++){
+//         leds[i] = ColorFromPalette(spellbound, colorIndex[i]);
 
-    }
+//     }
 
-    EVERY_N_MILLISECONDS(5){
-        for (int i = 0; i < NUM_LEDS; i++){
-            colorIndex[i]++;
-        }
-    }
-    FastLED.show();
-}
+//     EVERY_N_MILLISECONDS(5){
+//         for (int i = 0; i < NUM_LEDS; i++){
+//             colorIndex[i]++;
+//         }
+//     }
+//     FastLED.show();
+// }
 
 //
-void Theme::fadeGradientTogether(){
-    CRGBPalette16 currentPalette(GMT_sealand_gp);
-    CRGBPalette16 targetPalette(bhw2_grrrrr_gp);
+// void Theme::fadeGradientTogether(){
+//     CRGBPalette16 currentPalette(GMT_sealand_gp);
+//     CRGBPalette16 targetPalette(bhw2_grrrrr_gp);
 
-    for (int i = 0; i < NUM_LEDS; i++){
-        leds[i] = ColorFromPalette(currentPalette, colorIndex[i]);
-    }
+//     for (int i = 0; i < NUM_LEDS; i++){
+//         leds[i] = ColorFromPalette(currentPalette, colorIndex[i]);
+//     }
     
-    // the amount of steps it takes for the palette takes to blend into the next one
-    nblendPaletteTowardPalette(currentPalette, targetPalette, 10);
+//     // the amount of steps it takes for the palette takes to blend into the next one
+//     nblendPaletteTowardPalette(currentPalette, targetPalette, 10);
 
-    switch(whichPalette){
-        case 0:
-            targetPalette = bhw2_grrrrr_gp;
-            break;
-        case 1:
-            targetPalette = purplegreenlightblue;
-            break;
+//     switch(whichPalette){
+//         case 0:
+//             targetPalette = bhw2_grrrrr_gp;
+//             break;
+//         case 1:
+//             targetPalette = purplegreenlightblue;
+//             break;
 
-       case 2:
-            targetPalette = spellbound_gbhw2_grrrrr_gp;
-            break;
-    }
+//        case 2:
+//             targetPalette = spellbound_gp;
+//             break;
+//     }
 
-    EVERY_N_SECONDS(5){
-        whichPalette++;
+//     EVERY_N_SECONDS(5){
+//         whichPalette++;
 
-        if (whichPalette > 2) 
-            whichPalette = 0;
+//         if (whichPalette > 2) 
+//             whichPalette = 0;
 
-    }
+//     }
 
-    EVERY_N_MILLISECONDS(5){
-        for (int i = 0; i < NUM_LEDS; i++){
-            colorIndex[i]++;
-        }
-    }
+//     EVERY_N_MILLISECONDS(5){
+//         for (int i = 0; i < NUM_LEDS; i++){
+//             colorIndex[i]++;
+//         }
+//     }
 
-    FastLED.show();
+//     FastLED.show();
 
 
-}
+// }

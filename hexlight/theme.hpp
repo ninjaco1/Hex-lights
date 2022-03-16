@@ -1,16 +1,11 @@
+#ifndef THEME_HPP
+#define THEME_HPP
 #include <FastLED.h>
 
 #define NUM_LEDS 14
 #define LED_PIN 5 // the data pin for the LED strip
 
 // creating color palettes
-DEFINE_GRADIENT_PALETTE(heatmap_gp){
-    0, 0, 0, 0,        // black
-    128, 255, 0, 0,    // red
-    200, 255, 255, 0,  // bright yellow
-    255, 255, 255, 255 // full white
-};
-
 DEFINE_GRADIENT_PALETTE(purplegreenlightblue){
     0x00, 0xd9, 0x1e, 0xd7, // magenta
     125, 0x12, 0xab, 0x85,  // weird green
@@ -90,6 +85,11 @@ DEFINE_GRADIENT_PALETTE(bhw2_grrrrr_gp){
     255, 72, 50, 168
 };
 
+CRGBPalette16 purpleGreentoLightBlue = purplegreenlightblue;
+CRGBPalette16 GMT_sealand = GMT_sealand_gp;
+CRGBPalette16 spellbound = spellbound_gp;
+CRGBPalette16 bhw2_grrrrr = bhw2_grrrrr_gp;
+
 class Theme
 {
 private:
@@ -99,14 +99,13 @@ private:
     uint8_t current_theme;
     uint8_t num_themes;
     uint8_t hue;
-    uint8_t whichPalette = 0; // 
-
+    uint8_t whichPalette = 0; //
 
     // gradient palettes
-    CRGBPalette16 purpleGreentoLightBlue = purplegreenlightblue;
-    CRGBPalette16 GMT_sealand = GMT_sealand_gp;
-    CRGBPalette16 spellbound = spellbound_gp;
-    CRGBPalette16 bhw2_grrrrr = bhw2_grrrrr_gp;
+    // CRGBPalette16 purpleGreentoLightBlue = purplegreenlightblue;
+    // CRGBPalette16 GMT_sealand = GMT_sealand_gp;
+    // CRGBPalette16 spellbound = spellbound_gp;
+    // CRGBPalette16 bhw2_grrrrr = bhw2_grrrrr_gp;
 
 public:
     Theme();
@@ -132,3 +131,5 @@ public:
     void travelingGradient1();
     void fadeGradientTogether(); // change the gradient color
 };
+
+#endif
