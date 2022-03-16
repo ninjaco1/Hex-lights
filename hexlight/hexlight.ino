@@ -5,14 +5,14 @@
 
 // number of leds total (14 is the number for 1 hex)
 #define NUM_LEDS 14
+#define NUM_THEMES 11
 // change this value later
-#define LED_PIN 5 // the data pin for the leda
+#define LED_PIN 5 // the data pin for the led
 
 CRGB leds[NUM_LEDS];
 uint8_t colorIndex[NUM_LEDS];
 
 uint8_t current_theme;
-uint8_t num_themes;
 uint8_t hue;
 uint8_t whichPalette = 0; 
 
@@ -140,7 +140,6 @@ void setup()
 
     hue = 0;
     current_theme = 0;
-    num_themes = 10; // the number of themes there are
 
 
     FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds,NUM_LEDS);
@@ -155,6 +154,7 @@ void setup()
 void loop()
 {
 
+    showTheme();
 
 }
 
@@ -207,7 +207,7 @@ uint8_t chk_buttons(uint8_t pin)
 // change the theme
 void changeTheme(){
     current_theme++;
-    current_theme %= num_themes;
+    current_theme %= NUM_THEMES;
 }
 
 // show the theme selected
@@ -232,24 +232,24 @@ void showTheme(){
         case 5:
             changeOnlyHue();
             break;
-        // case 6:
-        //     travelingRainbow();
-        //     break;
-        // case 7:
-        //     coldBluePattern();
-        //     break;
-        // case 8:
-        //     showRandomPurpleBlue();
-        //     break;
-        // case 9:
-        //     gradientFading();
-        //     break;
-        // case 10:
-        //     travelingGradient1();
-        //     break;
-        // case 11:
-        //     fadeGradientTogether();
-        //     break;
+        case 6:
+            travelingRainbow();
+            break;
+        case 7:
+            coldBluePattern();
+            break;
+        case 8:
+            showRandomPurpleBlue();
+            break;
+        case 9:
+            gradientFading();
+            break;
+        case 10:
+            travelingGradient1();
+            break;
+        case 11:
+            fadeGradientTogether();
+            break;
 
     }
 
