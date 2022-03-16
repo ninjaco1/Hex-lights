@@ -6,7 +6,7 @@
 // number of leds total (14 is the number for 1 hex)
 #define NUM_LEDS 14
 // change this value later
-#define LED_PIN 5 // the data pin for the led
+#define LED_PIN 5 // the data pin for the leda
 
 CRGB leds[NUM_LEDS];
 uint8_t colorIndex[NUM_LEDS];
@@ -15,6 +15,7 @@ uint8_t current_theme;
 uint8_t num_themes;
 uint8_t hue;
 uint8_t whichPalette = 0; 
+
 
 volatile unsigned long last_button_time = 0;
 volatile unsigned long currentTime;
@@ -129,7 +130,6 @@ void travelingGradient1();
 void fadeGradientTogether(); // change the gradient color
 
 
-
 void setup()
 {
     // pinMode for buttons
@@ -154,30 +154,8 @@ void setup()
 
 void loop()
 {
-    // theme.showTheme();
 
 
-}
-
-//******************************************************************************
-//                            chk_buttons
-// Checks the state of the button number passed to it. It shifts in ones till
-// the button is pushed. Function returns a 1 only once per debounced button
-// push so a debounce and toggle function can be implemented at the same time.
-// Adapted to check all buttons from Ganssel's "Guide to Debouncing"
-// Expects active low pushbuttons on PINA port.  Debounce time is determined by
-// external loop delay times 12. Looks for rising edge on button so held actions
-// have no unexpected effect.
-//******************************************************************************
-uint8_t chk_buttons(uint8_t pin)
-{
-    static uint16_t state = 0;                          // holds state of debounce reading
-    state = (state << 1) | (digitalRead(pin)) | 0xE000; // mask on PINA button
-    if (state == 0xEFFF)                                // compares to rising edge value (so holding doesn't stack)
-        return 1;
-
-    // if not true for 12 times, return false
-    return 0;
 }
 
 
@@ -202,6 +180,28 @@ void ISR1()
 //         last_button_time = millis();
 //     }
 // }
+
+
+//******************************************************************************
+//                            chk_buttons
+// Checks the state of the button number passed to it. It shifts in ones till
+// the button is pushed. Function returns a 1 only once per debounced button
+// push so a debounce and toggle function can be implemented at the same time.
+// Adapted to check all buttons from Ganssel's "Guide to Debouncing"
+// Expects active low pushbuttons on PINA port.  Debounce time is determined by
+// external loop delay times 12. Looks for rising edge on button so held actions
+// have no unexpected effect.
+//******************************************************************************
+uint8_t chk_buttons(uint8_t pin)
+{
+    static uint16_t state = 0;                          // holds state of debounce reading
+    state = (state << 1) | (digitalRead(pin)) | 0xE000; // mask on PINA button
+    if (state == 0xEFFF)                                // compares to rising edge value (so holding doesn't stack)
+        return 1;
+
+    // if not true for 12 times, return false
+    return 0;
+}
 
 
 // change the theme
