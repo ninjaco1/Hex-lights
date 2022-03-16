@@ -4,7 +4,7 @@
 
 
 // number of leds total (14 is the number for 1 hex)
-#define NUM_LEDS 14
+#define NUM_LEDS 35
 #define NUM_THEMES 11
 // change this value later
 #define LED_PIN 5 // the data pin for the led
@@ -143,7 +143,7 @@ void setup()
 
 
     FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds,NUM_LEDS);
-    FastLED.setBrightness(50);
+    FastLED.setBrightness(75);
 
     for (int i = 0; i < NUM_LEDS; i++){
         colorIndex[i] = random8();
@@ -166,6 +166,7 @@ void ISR1()
     if (currentTime - last_button_time > 100)
     {
         // insert task here
+        changeTheme();
         last_button_time = millis();
     }
 }
@@ -362,7 +363,7 @@ void travelingRainbow(){
 // cold blue pattern
 void coldBluePattern(){
     // create a new pixel for led[0]
-    EVERY_N_MILLISECONDS(50){
+    EVERY_N_MILLISECONDS(75){
         leds[0] = CHSV(160, random8(), random8(100,255));
         
         // copy each pixel to the next one, starting at the far end 
