@@ -4,8 +4,11 @@
 
 
 // number of leds total (14 is the number for 1 hex)
-#define NUM_LEDS 35
+// #define NUM_LEDS 35
+#define NUM_LEDS 98
 #define NUM_THEMES 11
+#define NUM_HEX 7
+#define NUM_LEDS_HEX 14
 // change this value later
 #define LED_PIN 5 // the data pin for the led
 
@@ -15,6 +18,7 @@ uint8_t colorIndex[NUM_LEDS];
 uint8_t current_theme;
 uint8_t hue;
 uint8_t whichPalette = 0; 
+uint8_t hexValue[7] = {0,0,0,0,0,0,0}; // the brightness of the hex
 
 
 volatile unsigned long last_button_time = 0;
@@ -129,6 +133,8 @@ void gradientFading();       // all LEDs fading
 void travelingGradient1();
 void fadeGradientTogether(); // change the gradient color
 
+// creating my own themes
+void constantFades(); // having the hex always fading
 
 void setup()
 {
@@ -140,6 +146,9 @@ void setup()
 
     hue = 0;
     current_theme = 0;
+
+    for (int i = 0; i < 7; i++)
+        hexValue[i] = random8();    
 
 
     FastLED.addLeds<WS2812B, LED_PIN, GRB>(leds,NUM_LEDS);
@@ -453,6 +462,31 @@ void fadeGradientTogether(){
     EVERY_N_MILLISECONDS(5){
         for (int i = 0; i < NUM_LEDS; i++){
             colorIndex[i]++;
+        }
+    }
+
+    FastLED.show();
+
+
+}
+
+
+// constantly changing the hex
+void constantFades(){
+
+    // keeping track of hex 
+    for (int i = 0; i < NUM_HEX; i++){
+
+
+        for (int j = 0; j < NUM_LEDS_HEX; j++){
+
+            leds[i*j] = CHSV(100, 60, hexValue);
+        }
+    }
+
+    EVERY_N_MILLISECONDS(50){
+        for (int i = 0; i < NUM_HEX; i++){
+            hexValue[i]--; // decrease the brightness of the color
         }
     }
 
