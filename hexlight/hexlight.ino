@@ -480,13 +480,17 @@ void constantFades(){
 
         for (int j = 0; j < NUM_LEDS_HEX; j++){
 
-            leds[i*j] = CHSV(100, 60, hexValue);
+            leds[i*j] = CHSV(100, 60, hexValue[i]);
         }
     }
 
     EVERY_N_MILLISECONDS(50){
         for (int i = 0; i < NUM_HEX; i++){
             hexValue[i]--; // decrease the brightness of the color
+            if (hexValue[i] == 0){
+                // if the brightness is 0 then change to a new color
+                
+            }
         }
     }
 
