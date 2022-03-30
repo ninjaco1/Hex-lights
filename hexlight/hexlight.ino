@@ -477,7 +477,7 @@ void constantFades(){
     // keeping track of hex 
     for (int i = 0; i < NUM_HEX; i++){
 
-
+        // check the color 
         for (int j = 0; j < NUM_LEDS_HEX; j++){
 
             leds[i*j] = CHSV(100, 60, hexValue[i]);
